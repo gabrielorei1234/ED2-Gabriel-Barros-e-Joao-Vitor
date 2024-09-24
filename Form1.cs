@@ -29,17 +29,27 @@ namespace ED2___Gabriel_Barros_e_João_Vitor
             {
                 string directoryPath = folderBrowserDialog.SelectedPath;
                 txtFilePath.Text = directoryPath;
-                
+
                 var txtFiles = Directory.GetFiles(directoryPath, "*.txt");
-                
+
                 foreach (var file in txtFiles)
                 {
                     processadorArquivos.ProcessarArquivo(file);
                 }
-                
+
                 var resultados = arvoreAVL.ObterResultadosInOrder();
                 dataGridView1.DataSource = resultados;
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
