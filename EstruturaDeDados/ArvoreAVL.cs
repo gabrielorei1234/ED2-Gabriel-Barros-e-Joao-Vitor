@@ -40,12 +40,10 @@ public class ArvoreAVL
         {
             no.AdicionarOcorrencia(nomeArquivo, numeroLinha);
         }
-
-        // Atualizar altura e balancear
+        
         no.Altura = 1 + Math.Max(ObterAltura(no.Esquerda), ObterAltura(no.Direita));
         int balanceamento = ObterBalanceamento(no);
-
-        // Balanceamento da árvore
+        
         if (balanceamento > 1)
         {
             if (string.Compare(palavra, no.Esquerda.Palavra, StringComparison.OrdinalIgnoreCase) < 0)
@@ -118,22 +116,24 @@ public class ArvoreAVL
         if (no != null)
         {
             PercorrerInOrder(no.Esquerda, resultados);
+
             foreach (var ocorrencia in no.OcorrenciasArquivos)
-            {
-                foreach (var linha in ocorrencia.Value)
+            {                
+                var contagemTotal = ocorrencia.Value.Sum(l => l.contagem);
+                
+                resultados.Add(new ResultadoAVL
                 {
-                    resultados.Add(new ResultadoAVL
-                    {
-                        Palavra = no.Palavra,
-                        Arquivo = ocorrencia.Key,
-                        Linha = linha.linha,
-                        Contagem = linha.contagem
-                    });
-                }
+                    Palavra = no.Palavra,
+                    Arquivo = ocorrencia.Key,
+                    Linha = string.Join(",", ocorrencia.Value.Select(l => l.linha)),
+                    Contagem = contagemTotal
+                });
             }
+
             PercorrerInOrder(no.Direita, resultados);
         }
     }
+
 
     public NoAVL ObterRaiz() => _raiz;    
 }
