@@ -7,14 +7,15 @@ public class ListaDeExclusao
 {
     private List<string> _palavrasExcluidas;
 
-    public ListaDeExclusao()
+    public ListaDeExclusao(string palavrasInput)
     {
-        _palavrasExcluidas = new List<string> { "a", "o", "de", "e", "para" };
+        _palavrasExcluidas = new List<string>(palavrasInput.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries));
+        _palavrasExcluidas = _palavrasExcluidas.ConvertAll(p => p.Trim().ToLower());
         _palavrasExcluidas.Sort();
     }
 
     public bool DeveExcluir(string palavra)
     {
-        return Array.BinarySearch(_palavrasExcluidas.ToArray(), palavra.ToLower()) >= 0;
+        return _palavrasExcluidas.Contains(palavra.ToLower());
     }
 }

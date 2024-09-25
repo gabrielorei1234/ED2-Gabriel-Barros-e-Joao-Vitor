@@ -18,8 +18,10 @@ namespace ED2___Gabriel_Barros_e_João_Vitor
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
+            string palavrasExcluidasInput = txtPalavrasExcluidas.Text;
+
             var arvoreAVL = new ArvoreAVL();
-            var listaExclusao = new ListaDeExclusao();
+            var listaExclusao = new ListaDeExclusao(palavrasExcluidasInput);
             var processadorArquivos = new ProcessadorDeArquivos(arvoreAVL, listaExclusao);
 
             // Abre um diálogo para selecionar a pasta
