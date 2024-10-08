@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AV1.Modelos
+﻿namespace AV1.Modelos
 {
     public class ResultadoAVL
     {
