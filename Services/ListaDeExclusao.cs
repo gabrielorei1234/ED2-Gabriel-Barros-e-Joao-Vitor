@@ -9,7 +9,7 @@ public class ListaDeExclusao
 
     public ListaDeExclusao(string palavrasInput)
     {
-        _palavrasExcluidas = new List<string>(palavrasInput.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries));
+        _palavrasExcluidas = new List<string>(palavrasInput.Split(new[] { ',', ';', '"' }, StringSplitOptions.RemoveEmptyEntries));
         _palavrasExcluidas = _palavrasExcluidas.ConvertAll(p => p.Trim().ToLower());
         _palavrasExcluidas.Sort();
     }
